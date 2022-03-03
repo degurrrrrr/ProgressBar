@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import ProgressBar from './ProgressBar';
+import NewProgress from './NewProgress';
+import Timer from './TImer';
 
 function App() {
   return (
     <React.Fragment>
-      <ProgressBar />
+      <NewProgress />
+      <Timer />
     </React.Fragment>
   );
 }
