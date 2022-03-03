@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
 import NewProgress from './NewProgress';
-import Timer from './TImer';
+import MyProgress from './MyProgress';
+// import Timer from './TImer';
 
 function App() {
   return (
     <React.Fragment>
-      <NewProgress />
-      <Timer />
+      {/* <Timer /> */}
+      <MyProgress />
     </React.Fragment>
   );
 }

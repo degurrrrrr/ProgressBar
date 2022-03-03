@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import ProgressBar from '@ramonak/react-progress-bar';
+import { set } from 'lodash';
 
 export default function Timer() {
+  const videoLength = 130;
+
   const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(15);
-  const [seconds, setSeconds] = useState(39);
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(45);
+
+  const [progress, setProgress] = useState(0);
 
   // useState에 받아온 동영상의 길이를 각각 넣어주면 됨
 
-  useEffect(() => {
-    const hour = parseInt(hours);
-    const min = parseInt(minutes);
-    const sec = parseInt(seconds);
+  const hour = parseInt(hours);
+  const min = parseInt(minutes);
+  const sec = parseInt(seconds);
 
+  useEffect(() => {
     const countdown = setInterval(() => {
       if (sec > 0) {
         setSeconds(sec - 1);
@@ -40,6 +46,22 @@ export default function Timer() {
     return () => clearInterval(countdown);
   }, [hours, minutes, seconds]);
 
+  useEffect(() => {
+    // console.log(hours, munu);
+    const pg = parseInt(progress);
+    const myProgressBar = setInterval(() => {
+      const oneCnt = videoLength * 0.01;
+      if (pg < 100) {
+        setProgress(pg + 1);
+      }
+      if (pg === 100) {
+        // setProgress(0);
+        clearInterval(myProgressBar);
+      }
+    }, 1000);
+    return () => clearInterval(myProgressBar);
+  }, [progress]);
+
   return (
     <div className="App">
       <h1>CountDown!</h1>
@@ -48,6 +70,7 @@ export default function Timer() {
           {hours < 10 ? `0${hours}` : hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </h2>
       </div>
+      <ProgressBar completed={progress} isLabelVisible={true} />
     </div>
   );
 }
