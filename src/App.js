@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import NewProgress from './NewProgress';
 import MyProgress from './MyProgress';
+import Test from './Test';
 // import Timer from './TImer';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <React.Fragment>
       {/* <Timer /> */}
       <MyProgress />
+      {/* <Test /> */}
     </React.Fragment>
   );
 }
